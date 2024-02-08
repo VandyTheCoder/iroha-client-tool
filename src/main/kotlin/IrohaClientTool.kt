@@ -1,66 +1,39 @@
 package me.lucifer
 
-import io.grpc.ConnectivityState
-import jp.co.soramitsu.iroha.java.IrohaAPI
+import me.lucifer.common.Constant.CREATOR_ACCOUNT_ID
+import me.lucifer.common.Constant.CREATOR_ACCOUNT_KEYPAIR
+import me.lucifer.common.Constant.DOMAIN_ID
+import me.lucifer.common.Constant.USD_ASSET
+import me.lucifer.function.InitPeer
+import me.lucifer.function.TransferAsset
+import me.lucifer.model.IrohaTransfer
+import java.math.BigDecimal
 import javax.xml.bind.DatatypeConverter
 
 class IrohaClientTool {
     companion object {
-        private val irohaNodes = listOf(
-            "x.x.x.x:50051"
-        )
-        private val irohaPeers = irohaNodes.map {
-            val (host, port) = it.split(":")
-            IrohaAPI(host, port.toInt())
-        }
-        private val trxHashes = listOf(
-            "xxxx",
-            "xxxx"
-        ).map { DatatypeConverter.parseHexBinary(it) }
 
+        private val trxHashes = listOf(
+            "830d8480181ef43b09da6bf826b0c44a92421c67db115a06d10371d1647609f7"
+        ).map { DatatypeConverter.parseHexBinary(it) }
 
         @JvmStatic
         fun main(args: Array<String>) {
-            // Initialize Iroha peers
-            println("IROHA_CLIENT :: Initializing Iroha peers ...")
-            irohaPeers.forEach { peer ->
-                while (true) {
-                    when (val state = peer.channel.getState(true)) {
-                        ConnectivityState.IDLE -> {
-                            println("IROHA_CLIENT :: Connection to PEER[${peer.uri}] is idling ...")
-                            Thread.sleep(500) // Wait for 0.5 seconds
-                        }
-                        ConnectivityState.CONNECTING -> {
-                            println("IROHA_CLIENT :: Connecting to PEER[${peer.uri}] ...")
-                            Thread.sleep(500) // Wait for 0.5 seconds
-                        }
-                        ConnectivityState.READY -> {
-                            println("IROHA_CLIENT :: Connected to PEER[${peer.uri}]!")
-                            break
-                        }
-                        else -> {
-                            throw RuntimeException("IROHA_CLIENT :: Unable to connect to iroha with state: $state")
-                        }
-                    }
-                }
-            }
-            println("IROHA_CLIENT :: Done initializing Iroha peers!")
-            getTransactionStatus()
-        }
+            InitPeer.start()
 
-        @OptIn(ExperimentalStdlibApi::class)
-        private fun getTransactionStatus() {
-            for (trxHash in trxHashes) {
-                // Get transaction status
-                println("\nIROHA_CLIENT :: Getting transaction with Hash[${trxHash.toHexString()}] status ...")
-                irohaPeers.forEach {
-                    try {
-                        val status = it.txStatusSync(trxHash)
-                        println("IROHA_CLIENT :: PEER[${it.uri}] - Status of Transaction[${trxHash.toHexString()}] is ${status.txStatus.name}")
-                    } catch (e: Exception) { e.printStackTrace() }
-                }
-                println("IROHA_CLIENT :: Done getting transaction with Hash[${trxHash.toHexString()}] status!\n")
-            }
+            // Check Existing Hash
+            // CheckHash.getTransactionsStatus(trxHashes)
+
+            // Transfer Asset
+//            val irohaTransfer = IrohaTransfer(
+//                senderAccountId = CREATOR_ACCOUNT_ID,
+//                senderKeyPair = CREATOR_ACCOUNT_KEYPAIR,
+//                receiverAccountId = "violet@$DOMAIN_ID",
+//                amount = BigDecimal(100),
+//                asset = USD_ASSET,
+//                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ."
+//            )
+//            TransferAsset.createTransaction(irohaTransfer, InitPeer.getPeer())
         }
     }
 }

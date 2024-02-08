@@ -1,0 +1,145 @@
+{
+  "block_v1": {
+    "payload": {
+      "height": "1",
+      "prevBlockHash": "0000000000000000000000000000000000000000000000000000000000000000",
+      "transactions": [
+        {
+          "payload": {
+            "reducedPayload": {
+              "commands": [
+                {
+                  "createRole": {
+                    "permissions": [
+                      "can_add_peer",
+                      "can_add_signatory",
+                      "can_create_account",
+                      "can_create_domain",
+                      "can_get_all_acc_ast",
+                      "can_get_all_acc_ast_txs",
+                      "can_get_all_acc_detail",
+                      "can_get_all_acc_txs",
+                      "can_get_all_accounts",
+                      "can_get_all_signatories",
+                      "can_get_all_txs",
+                      "can_get_blocks",
+                      "can_get_roles",
+                      "can_read_assets",
+                      "can_remove_signatory",
+                      "can_set_quorum",
+                      "can_append_role",
+                      "can_detach_role"
+                    ],
+                    "roleName": "admin"
+                  }
+                },
+                {
+                  "createRole": {
+                    "permissions": [
+                      "can_add_signatory",
+                      "can_get_my_acc_ast",
+                      "can_get_my_acc_ast_txs",
+                      "can_get_my_acc_detail",
+                      "can_get_my_acc_txs",
+                      "can_get_my_account",
+                      "can_get_my_signatories",
+                      "can_get_my_txs",
+                      "can_grant_can_add_my_signatory",
+                      "can_grant_can_remove_my_signatory",
+                      "can_grant_can_set_my_account_detail",
+                      "can_grant_can_set_my_quorum",
+                      "can_grant_can_transfer_my_assets",
+                      "can_receive",
+                      "can_remove_signatory",
+                      "can_set_quorum",
+                      "can_transfer"
+                    ],
+                    "roleName": "user"
+                  }
+                },
+                {
+                  "createRole": {
+                    "permissions": [
+                      "can_add_asset_qty",
+                      "can_create_asset",
+                      "can_receive",
+                      "can_transfer"
+                    ],
+                    "roleName": "money_creator"
+                  }
+                },
+                {
+                  "createRole": {
+                    "permissions": [
+                      "can_add_signatory",
+                      "can_remove_signatory",
+                      "can_grant_can_add_my_signatory",
+                      "can_grant_can_set_my_quorum"
+                    ],
+                    "roleName": "account_recovery"
+                  }
+                },
+                {
+                  "createDomain": {
+                    "defaultRole": "user",
+                    "domainId": "lucifer"
+                  }
+                },
+                {
+                  "createAsset": {
+                    "assetName": "khr",
+                    "domainId": "lucifer",
+                    "precision": 2
+                  }
+                },
+                {
+                  "createAsset": {
+                    "assetName": "usd",
+                    "domainId": "lucifer",
+                    "precision": 2
+                  }
+                },
+                {
+                  "createAccount": {
+                    "accountName": "admin",
+                    "domainId": "lucifer",
+                    "publicKey": "1eaad1d668c9374c32c174c7dd7c9a0475a465173f44ecaa97e6e4739aebf446"
+                  }
+                },
+                {
+                  "createAccount": {
+                    "accountName": "violet",
+                    "domainId": "lucifer",
+                    "publicKey": "82b6e699fe540b893049007f107d54343cffcb45ab951b74dd30d2c94f81407e"
+                  }
+                },
+                {
+                  "appendRole": {
+                    "accountId": "admin@lucifer",
+                    "roleName": "admin"
+                  }
+                },
+                {
+                  "appendRole": {
+                    "accountId": "admin@lucifer",
+                    "roleName": "money_creator"
+                  }
+                },
+                {
+                  "addPeer": {
+                    "peer": {
+                      "address": "127.0.0.1:10001",
+                      "peerKey": "0bade45b98760e48112405fefe2f40800078d7db8407f50165c2bfa587015f1b"
+                    }
+                  }
+                }
+              ],
+              "quorum": 1
+            }
+          }
+        }
+      ],
+      "txNumber": 2
+    }
+  }
+}
