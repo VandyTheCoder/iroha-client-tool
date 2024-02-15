@@ -7,7 +7,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
     maven {
         name = "GitHubLuciferApacheMavenPackages"
         url = uri("https://maven.pkg.github.com/VandyTheCoder/*")
@@ -20,7 +19,7 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
-    implementation("me.lucifer.iroha-java:client:1.1.0")
+    implementation("me.lucifer.iroha-java:client:1.1.3")
     implementation("org.slf4j:slf4j-simple:1.7.32")
     testImplementation("com.google.protobuf:protobuf-java-util:3.12.2")
     testImplementation("org.jetbrains.kotlin:kotlin-test")
