@@ -20,20 +20,20 @@ class IrohaClientTool {
         @JvmStatic
         fun main(args: Array<String>) {
             InitPeer.start()
-
+            val largeString = "a".repeat(102400)
             // Check Existing Hash
             // CheckHash.getTransactionsStatus(trxHashes)
 
             // Transfer Asset
-//            val irohaTransfer = IrohaTransfer(
-//                senderAccountId = CREATOR_ACCOUNT_ID,
-//                senderKeyPair = CREATOR_ACCOUNT_KEYPAIR,
-//                receiverAccountId = "violet@$DOMAIN_ID",
-//                amount = BigDecimal(100),
-//                asset = USD_ASSET,
-//                description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis ."
-//            )
-//            TransferAsset.createTransaction(irohaTransfer, InitPeer.getPeer())
+            val irohaTransfer = IrohaTransfer(
+                senderAccountId = CREATOR_ACCOUNT_ID,
+                senderKeyPair = CREATOR_ACCOUNT_KEYPAIR,
+                receiverAccountId = "violet@$DOMAIN_ID",
+                amount = BigDecimal(100),
+                asset = USD_ASSET,
+                description = largeString
+            )
+            TransferAsset.createTransaction(irohaTransfer, InitPeer.getPeer())
         }
     }
 }
