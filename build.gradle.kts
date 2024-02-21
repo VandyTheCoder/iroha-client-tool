@@ -7,7 +7,6 @@ version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
-    maven("https://jitpack.io")
     maven {
         name = "GitHubPackages"
         url = uri("https://maven.pkg.github.com/soramitsukhmer-lab/iroha-java")
