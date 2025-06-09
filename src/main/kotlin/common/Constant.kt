@@ -15,7 +15,7 @@ object Constant {
         "1eaad1d668c9374c32c174c7dd7c9a0475a465173f44ecaa97e6e4739aebf446",
         "c41acce4682e3f727c22c64cb982fd4aa32a6a886227effd3f0cfc2e97d90521"
     )
-    private val IROHA_NODES = listOf("localhost:50051")
+    private val IROHA_NODES = listOf("127.0.0.1:50051")
     val IROHA_PEERS = IROHA_NODES.map {
         val (host, port) = it.split(":")
         IrohaAPI(host, port.toInt())
